@@ -1,41 +1,53 @@
-# Threat Detection Home Lab
+# 🛡️ SOC Home Lab - Ubuntu Setup
 
-## Objective
-This project involves building a security monitoring lab to explore threat detection and incident response in a controlled environment. It covers the setup of monitoring systems, log analysis, network visibility, and threat hunting techniques, with a focus on simulating real-world scenarios and improving defensive capabilities.
+This project documents the setup of a Security Operations Center (SOC) home lab using open-source tools on Ubuntu. The purpose of this lab is to simulate real-world security monitoring, threat detection, and incident response workflows for learning and experimentation.
 
-## Skills Learned
-- Gained hands-on experience in security monitoring within a lab environment
-- Configured and deployed network traffic analysis tools
-- Created alerts and rules for detecting suspicious activity
-- Investigated simulated security incidents and developed response procedures
-- Explored log collection, parsing, and analysis for threat detection and insights
+---
 
-## Tools Used
-- **Splunk** - SIEM for log analysis and threat detection
-- **Sysmon** - Windows system monitoring for detailed event logging.
-- **Suricata** - Network IDS for threat detection on network traffic.
-- **Winlogbeat** - Lightweight agent to ship Windows logs to Splunk.
+## 📌 Objectives
+- Build a functional SOC lab on a local Ubuntu system
+- Collect and analyze logs using the ELK Stack (Elasticsearch, Logstash, Kibana)
+- Monitor and detect malware, intrusions, and suspicious behavior
+- Practice incident response and log correlation
 
-## Project Phases
+---
 
-### Phase 1: Home Lab Setup & Configuration
-- **Virtual Machine Setup**: Installed VirtualBox; created Windows and Linux VMs
-- **Security Tools Installation**: Installed Splunk Enterprise on Linux VM; installed Sysmon and Winlogbeat on Windows VM
-- **Log Forwarding Configuration**: Configured Sysmon for detailed Windows event logging and Winlogbeat to forward logs to Splunk via HTTP Event Collector
-- **(Optional) Network IDS Setup**: Installed and configured Suricata on Linux VM for network traffic monitoring and alerting
+## ⚙️ System Requirements
+- OS: Ubuntu 20.04+ (tested on 22.04 LTS)
+- RAM: 8 GB minimum (16 GB recommended)
+- Disk: 50 GB+ free
+- Privileged access (`sudo`)
 
-### Phase 2: SIEM Alerts & Dashboards
-- **Event Data Ingestion**: Successfully ingested Windows Sysmon logs and Suricata alerts into Splunk
-- **Alert Rules Configuration**: Created alerts for brute force login attempts, suspicious process creations, and privilege escalation indicators
-- **Dashboard Development**: Built interactive Splunk dashboards to visualize endpoint and network security events in real-time
+---
 
-### Phase 3: Incident Response & Analysis
-- **Simulated Attack Scenarios**: Generated test attacks (e.g., brute force, suspicious processes) to validate detection capabilities
-- **Incident Documentation**: Developed basic SOC playbooks and incident reports based on lab detections and alert triggers
-- **Continuous Improvement**: Tuned alert thresholds and log collection for reducing false positives and improving detection accuracy
+## 📦 Installed Components
 
-## Challenges
-*To be documented*
+### 🔹 ELK Stack (Core SIEM)
+- **Elasticsearch**: Stores and indexes log data
+- **Logstash**: Ingests, processes, and forwards logs
+- **Kibana**: Web UI for visualizing logs
 
-## Attack Simulations & Results
-*To be documented*
+### 🔹 Log Forwarders
+- **Filebeat**: Lightweight shipper to forward system/app logs to Logstash
+
+### 🔹 Detection Tools
+- **ClamAV**: Antivirus scanner
+- **Linux Malware Detect (LMD)**: Malware scanner with real-time monitoring
+- **chkrootkit** & **rkhunter**: Rootkit detection tools
+
+### 🔹 Network Monitoring
+- **Wireshark**: Packet inspection
+- **Suricata**: Network IDS/IPS
+- **Zeek**: Advanced network traffic analysis
+
+### 🔹 Host-Based Monitoring
+- **Wazuh Agent**: EDR + Host IDS (with optional Wazuh Manager)
+- **Sysmon for Linux** *(optional)*: Process + file activity logging
+
+---
+
+## 🛠️ Installation Steps
+
+### Update System
+```bash
+sudo apt update && sudo apt upgrade -y
